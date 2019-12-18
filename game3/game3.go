@@ -60,7 +60,7 @@ func promptGuessNumber() int64{
 }
 
 func storeGuessNumber(guessNumber int64) bool{
-	fh, err := os.OpenFile("guess_number.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0755)
+	fh, err := os.OpenFile("./tmp/guess_number.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0755)
 	if err != nil {
 		log.Fatal(err)
 		fh.Close()
