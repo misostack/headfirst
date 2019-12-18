@@ -24,24 +24,55 @@ func main() {
 		- If the player ran out of turns without guessing correctly. Says "Sorry, it was [target]\"
 	`)
 	targetNumber := generateNumber()
-	fmt.Printf("The target number is %d\n", targetNumber)
-	guessNumber := promptGuessNumber()
-	if(guessNumber != -1){
-		fmt.Printf("The number %d that you guess is ", guessNumber)	
+	// fmt.Printf("The target number is %d\n", targetNumber)
+	guessTimes := 0
+	guessTimesLimit := 10
+	guessTimesText := "turn"
+	guessCompareString := ""
+	for true {
+		guessTimes++
+		if guessTimes > guessTimesLimit { 
+			fmt.Printf(
+				"Sorry, the target is %d",
+				targetNumber,
+			)
+			break
+		}
+		guessNumber := promptGuessNumber(guessTimes)
+		if guessNumber == targetNumber {
+			if guessTimes > 1 { guessTimesText = "turns" }
+			fmt.Printf(
+				"Good job! The target number is %d , and you take %d %s to find out!\n",
+				targetNumber,
+				guessTimes,
+				guessTimesText,
+			)
+			break
+		} else {
+			if guessNumber > targetNumber {
+				guessCompareString = "HIGHER"
+			} else {
+				guessCompareString = "LOWER"
+			}
+			fmt.Printf("Your guess number is %s than the target number\n", guessCompareString)
+		}
 	}
+	
 }
 
-func generateNumber() int{
+func generateNumber() int64{
 	// Create and seed the generator.
 	// Typically a non-fixed seed should be used, such as time.Now().UnixNano().
 	// Using a fixed seed will produce the same output on every run.	
 	// fixed seed: rand.Seed(123)
 	rand.Seed(time.Now().UnixNano())
-	return rand.Intn(100)
+	return rand.Int63n(100)
 }
 
-func promptGuessNumber() int64{
-	fmt.Print("Please enter your guess number: ")
+func promptGuessNumber(guessTimes int) int64{
+	guessTimesText := "time"
+	if guessTimes > 1 { guessTimesText = "times" } 
+	fmt.Printf("Please enter your guess number (%d %s): ", guessTimes, guessTimesText)
 	reader := bufio.NewReader(os.Stdin)
 	input, error := reader.ReadString('\n')
 	// trim space
