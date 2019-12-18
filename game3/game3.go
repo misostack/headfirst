@@ -66,7 +66,7 @@ func generateNumber() int64{
 	// Using a fixed seed will produce the same output on every run.	
 	// fixed seed: rand.Seed(123)
 	rand.Seed(time.Now().UnixNano())
-	return rand.Int63n(100)
+	return rand.Int63n(100) + 1
 }
 
 func promptGuessNumber(guessTimes int) int64{
