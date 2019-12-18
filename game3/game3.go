@@ -23,6 +23,7 @@ func main() {
 		- If the player's guess is equal to the target number, tell them "Good job". Then stop asking guess
 		- If the player ran out of turns without guessing correctly. Says "Sorry, it was [target]\"
 	`)
+	fmt.Println(time.Now(), time.Now().Unix())
 	targetNumber := generateNumber()
 	// fmt.Printf("The target number is %d\n", targetNumber)
 	guessTimes := 0
