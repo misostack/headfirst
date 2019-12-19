@@ -7,7 +7,8 @@
 - [x] Strings ( strings )
 - [x] Custom errors
 - [x] Formatting Verbs
-- [ ] Pointers
+- [x] Pointers
+- [ ] Packages
 
 ## The Headfirst Games
 
@@ -45,3 +46,10 @@ func generateNumber() int{
 	return rand.Intn(100)
 }
 ```
+
+**Packages**
+
+- https://www.digitalocean.com/community/tutorials/how-to-write-comments-in-go
+- https://golang.org/doc/effective_go.html#commentary
+- https://github.com/golang/lint/issues/389
+- https://github.com/golang/go/wiki/CodeReviewComments
