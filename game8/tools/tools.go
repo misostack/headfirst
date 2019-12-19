@@ -8,9 +8,9 @@ import (
 
 // ReadFile will require a filepath
 // It will read the file content and parse the data into array
-func ReadFile(filepath string) ([10]int, error){
+func ReadFile(filepath string) ([]int, error){
 	fh, err := os.Open(filepath)
-	var arr [10]int
+	arr:= make([]int, 10)
 	if err != nil {
 		fh.Close()
 		return arr, err

@@ -14,7 +14,7 @@ func main() {
 		notes[i] = strconv.Itoa(i + 1)
 		fmt.Println(notes[i])
 	}
-	var numbers [10]int
+	numbers := make([]int, 10)
 	for i:=0; i < len(numbers); i++ {
 		fmt.Printf("%d ", numbers[i])
 		numbers[i] = i + 1
@@ -55,7 +55,7 @@ func main() {
 	fmt.Printf("= %v\n", sum(data))
 }
 
-func sum(arr [10]int) int {
+func sum(arr []int) int {
 	s:= 0
 	for _, ele := range arr {
 		s += ele
