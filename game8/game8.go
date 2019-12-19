@@ -10,7 +10,7 @@ import (
 
 func main() {	
 	fmt.Println("[Headfirst Series][Game 8]: The arrays")
-	args := os.Args[1:]
+	args := os.Args
 	fmt.Println("Args:")
 	for _ , arg := range args {
 		fmt.Printf("%v", arg)
