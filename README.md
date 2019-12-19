@@ -1,10 +1,13 @@
 # Headfirst series
 
 - [x] Print alphabet
-- [ ] Conversions (strconv)
-- [ ] Error & Log ( log )
-- [ ] User Input ( os, bufio )
-- [ ] Strings ( strings )
+- [x] Conversions (strconv)
+- [x] Error & Log ( log )
+- [x] User Input ( os, bufio )
+- [x] Strings ( strings )
+- [x] Custom errors
+- [x] Formatting Verbs
+- [ ] Pointers
 
 ## The Headfirst Games
 
