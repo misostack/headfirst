@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"strconv"
+	"log"
+	game8tools "github.com/misostack/headfirst/game8/tools"
 )
 
 func main() {
@@ -43,6 +45,14 @@ func main() {
 	}
 	// sum
 	fmt.Printf("= %v\n", sum(numbers))
+
+	// read from file
+	data, err := game8tools.ReadFile("./tmp/game8.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+	// else
+	fmt.Printf("= %v\n", sum(data))
 }
 
 func sum(arr [10]int) int {
