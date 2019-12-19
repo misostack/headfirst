@@ -27,13 +27,16 @@ func main() {
 		fmt.Printf("%s ",mnotes[i])
 		if i == len(mnotes) - 1 { fmt.Println("")}
 	}
-	tn := [10]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	tn := numbers[2:5]
+	// test append a slice is underlying an array
+	tn = append(tn, 100)
 	it := 0
+	fmt.Println("SLICE FROM 2:5")
 	for true {
 		fmt.Println(tn[it])
 		it++
-		if it == 10 { break }
-	}
+		if it == len(tn) { break }
+	}	
 
 	// another way to loop
 	for idx, mnote := range mnotes {

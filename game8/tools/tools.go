@@ -10,21 +10,24 @@ import (
 // It will read the file content and parse the data into array
 func ReadFile(filepath string) ([]int, error){
 	fh, err := os.Open(filepath)
-	arr:= make([]int, 10)
+	arr := []int{} // an empty slice
+	// arr:= make([]int, 10)
 	if err != nil {
 		fh.Close()
 		return arr, err
 	}
 	// else
 	scanner := bufio.NewScanner(fh)
-	i := 0
+	// i := 0
 	for scanner.Scan() {
-		arr[i], err = strconv.Atoi(scanner.Text())
+		// arr[i], err := strconv.Atoi(scanner.Text())
+		num, err := strconv.Atoi(scanner.Text())		
 		if err != nil {
 			return arr, err
 		}
-		i++
-		if i == 10 { break }
+		arr = append(arr, num)
+		// i++
+		// if i == 10 { break }
 	}	
 	err = fh.Close()
 	if err != nil {
