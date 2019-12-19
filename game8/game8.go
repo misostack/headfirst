@@ -4,11 +4,18 @@ import (
 	"fmt"
 	"strconv"
 	"log"
+	"os"
 	game8tools "github.com/misostack/headfirst/game8/tools"
 )
 
-func main() {
+func main() {	
 	fmt.Println("[Headfirst Series][Game 8]: The arrays")
+	args := os.Args[1:]
+	fmt.Println("Args:")
+	for _ , arg := range args {
+		fmt.Printf("%v", arg)
+	}
+	fmt.Println("------------")
 	var notes [7]string
 	for i:=0; i < len(notes); i++ {
 		notes[i] = strconv.Itoa(i + 1)
@@ -29,7 +36,7 @@ func main() {
 	}
 	tn := numbers[2:5]
 	// test append a slice is underlying an array
-	tn = append(tn, 100)
+	tn = append(tn, 100) // 
 	it := 0
 	fmt.Println("SLICE FROM 2:5")
 	for true {
