@@ -8,7 +8,8 @@
 - [x] Custom errors
 - [x] Formatting Verbs
 - [x] Pointers
-- [ ] Packages
+- [x] Packages
+- [ ] Arrays
 
 ## The Headfirst Games
 
@@ -53,3 +54,13 @@ func generateNumber() int{
 - https://golang.org/doc/effective_go.html#commentary
 - https://github.com/golang/lint/issues/389
 - https://github.com/golang/go/wiki/CodeReviewComments
+
+**Docs**
+
+- https://godoc.org/golang.org/x/tools/cmd/godoc
+
+```bash
+sudo apt-get install golang-golang-x-tools
+
+godoc -http :6060
+```
