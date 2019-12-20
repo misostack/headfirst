@@ -9,7 +9,9 @@
 - [x] Formatting Verbs
 - [x] Pointers
 - [x] Packages
-- [ ] Arrays
+- [x] Arrays
+- [x] Slice
+- [x] Variadic function
 
 ## The Headfirst Games
 
