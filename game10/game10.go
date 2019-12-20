@@ -15,7 +15,7 @@ func theLinearTime() {
 	fmt.Println("The run time of the algorithm:", end - start, " miliseconds")
 }
 
-func theHaNoiTower(num int, src string, dst string, tmp string) {
+func theHaNoiTower(num int, src string, dst string, tmp string, totalTime *int64, steps *int) {
 	// The Tower of Hanoi (also called the Tower of Brahma) We are given three rods and N number
 	// of disks, initially all the disks are added to first rod (the leftmost one) is in decreasing size order.
 	// The objective is to transfer the entire stack of disks from first tower to third tower (the rightmost
@@ -24,18 +24,25 @@ func theHaNoiTower(num int, src string, dst string, tmp string) {
 	// Analysis: If we want to move N disks from source to destination, then we first move N-1 disks
 	// from source to temp, then move the lowest Nth disk from source to destination. Then it will
 	// move N-1 disks from temp to destination.
-	
+	start := int64(time.Now().Nanosecond())
 	if num < 1 {
+		fmt.Println("The run time of the algorithm:", *steps, " steps")
+		fmt.Println("The run time of the algorithm:", *totalTime, " nanoseconds")
 		return
 	}
-	theHaNoiTower(num - 1, src, tmp, dst)
+	theHaNoiTower(num - 1, src, tmp, dst, totalTime, steps)
 	fmt.Println("\n Move [", num, "] disk from peg ", src, " to peg ", dst)
-	theHaNoiTower(num - 1, tmp, dst, src)
+	*steps ++
+	theHaNoiTower(num - 1, tmp, dst, src, totalTime, steps)
+	end := int64(time.Now().Nanosecond())
+	*totalTime += (end - start)	
 }
 
 func main () {
 	fmt.Println("[Headfirst Series][Game10]: Algorithms Analysis")
 	theLinearTime()
-	num := 3
-	theHaNoiTower(num, "A", "C", "B")
+	num := 8
+	var totalTime int64 = 0
+	var steps int = 0
+	theHaNoiTower(num, "A", "C", "B", &totalTime, &steps)
 }
