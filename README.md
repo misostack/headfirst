@@ -12,6 +12,7 @@
 - [x] Arrays
 - [x] Slice
 - [x] Variadic function
+- [x] Algorithms Analysis
 
 ## The Headfirst Games
 
