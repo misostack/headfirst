@@ -7,6 +7,7 @@ import (
 	"time"
 	"bufio"
 	"log"
+	"sort"
 )
 
 
@@ -27,9 +28,28 @@ func main() {
 	// printVotesResult(names, results)
 	ranks, err := countVotesWithMap(filePath)
 	if err != nil { log.Fatal(err) }
-	for key, val := range ranks {
-		fmt.Printf("%v : %v\n", key, val)
+	names := []string{}
+	for name := range ranks {
+		names = append(names, name)
 	}
+	sort.Strings(names)
+	for idx, name := range names {
+		fmt.Printf("%v. %v : %v\n", idx + 1, name, ranks[name])
+	}
+	// zero values
+	counters := map[string]int{"a": 3, "b": 0}
+	var value int
+	var ok bool
+	value, ok = counters["a"]
+	fmt.Println(value, ok)
+	value, ok = counters["b"]
+	fmt.Println(value, ok)
+	value, ok = counters["c"]
+	fmt.Println(value, ok)
+	// delete
+	delete(counters, "a")
+	value, ok = counters["a"]
+	fmt.Println(value, ok)		
 }
 
 func printArray(arr []int) {
@@ -68,10 +88,14 @@ func countVotesWithMap(filePath string) (map[string]int, error) {
 	for _,line := range lines {
 		ranks[line]++
 	}
+	fmt.Println(ranks)
 	// ranks["gold"] = 1
 	// ranks["silver"] = 2
 	// fmt.Printf("ranks[\"gold\"]: %v\n", ranks["gold"])
 	// fmt.Println(lines[0])
+	// The for ... range loop processes map keys and values in a random order because a map is
+	// an unordered collection of keys and values
+	
 	return ranks, nil
 }
 
