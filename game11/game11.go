@@ -6,6 +6,7 @@ import (
 	"math/rand"
 	"time"
 	"bufio"
+	"log"
 )
 
 
@@ -20,10 +21,15 @@ func main() {
 	// status, err := generateData(filePath)
 	// if err != nil { fmt.Println(err) }
 	// if status { fmt.Println("Otoke") }
-	results := []int{}
-	names := []string{}
-	countVotes(filePath, &names, &results)
-	printVotesResult(names, results)
+	// results := []int{}
+	// names := []string{}
+	// countVotes(filePath, &names, &results)
+	// printVotesResult(names, results)
+	ranks, err := countVotesWithMap(filePath)
+	if err != nil { log.Fatal(err) }
+	for key, val := range ranks {
+		fmt.Printf("%v : %v\n", key, val)
+	}
 }
 
 func printArray(arr []int) {
@@ -54,15 +60,30 @@ func readLines(filePath string) ([]string, error) {
 	return lines, nil
 }
 
+func countVotesWithMap(filePath string) (map[string]int, error) {
+	lines, err := readLines(filePath)
+	if err != nil { return nil, err }
+	var ranks map[string]int // key:string, value:int	
+	ranks = make(map[string]int)
+	for _,line := range lines {
+		ranks[line]++
+	}
+	// ranks["gold"] = 1
+	// ranks["silver"] = 2
+	// fmt.Printf("ranks[\"gold\"]: %v\n", ranks["gold"])
+	// fmt.Println(lines[0])
+	return ranks, nil
+}
+
 func countVotes(filePath string, names *[]string, counts *[]int) error{
 	// https://www.geeksforgeeks.org/golang-pointer-to-an-array-as-function-argument/
 
-	var matched bool
+	
 	lines, err := readLines(filePath)
 	if err != nil { return err }
 	for _, line := range lines {
 		// count votes
-		matched = false
+		matched := false
 		for idx, name := range (*names) {
 			if line == name {
 				matched = true
