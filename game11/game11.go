@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"os"
+	"math/rand"
+	"time"
 )
 
 func main() {
@@ -23,16 +25,29 @@ func generateData(filePath string) (status bool, err error) {
 	if err != nil {
 		return false, err
 	}
-	var names [5]string = [5]string{ 
+	var names [10]string = [10]string{ 
 		"Dat Xanh Group", 
 		"FLC Group", 
 		"Vingroup", 
 		"CapitaLand",
-		"Hung Thinh Real Estate Business Investment Corporation" }
-	var content string = ""
-	for _, name:= range names {
-		content += name + "\n"
+		"Hung Thinh Real Estate Business Investment Corporation",
+		"Novaland",
+		"Phat Dat Real Estate Development Corporation",
+		"Phu My Hung",
+		"Nam Long Investment Corporation",
+		"Sun Group",
 	}
+
+	rand.Seed(int64(time.Now().Nanosecond()))
+	total := int(rand.Int63n(100) + 100)
+	
+	var content string = ""
+	for index := 0; index < total; index++ {
+		content += names[rand.Int63n(10)] + "\n"
+	}
+	// for _, name:= range names {
+	// 	content += name + "\n"
+	// }
 	_, err = fh.WriteString(content)
 	// always close file after writing
 	fh.Close()	
