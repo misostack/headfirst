@@ -1,18 +1,23 @@
 # Headfirst series
 
-- [x] Print alphabet
-- [x] Conversions (strconv)
-- [x] Error & Log ( log )
-- [x] User Input ( os, bufio )
-- [x] Strings ( strings )
-- [x] Custom errors
-- [x] Formatting Verbs
-- [x] Pointers
-- [x] Packages
-- [x] Arrays
-- [x] Slice
-- [x] Variadic function
-- [x] Algorithms Analysis
+- Print alphabet
+- Conversions (strconv)
+- Error & Log ( log )
+- User Input ( os, bufio )
+- Strings ( strings )
+- Custom errors
+- Formatting Verbs
+- Pointers
+- Packages
+- Arrays
+- Slice
+- Variadic function
+- Algorithms Analysis
+- Maps
+- Structs
+- Defined Types
+- Encapsulation and Embedding
+- Interfaces
 
 ## The Headfirst Games
 
