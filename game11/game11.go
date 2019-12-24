@@ -5,7 +5,21 @@ import (
 	"os"
 	"math/rand"
 	"time"
+	"bufio"
 )
+
+var names [10]string = [10]string{ 
+	"Dat Xanh Group", 
+	"FLC Group", 
+	"Vingroup", 
+	"CapitaLand",
+	"Hung Thinh Real Estate Business Investment Corporation",
+	"Novaland",
+	"Phat Dat Real Estate Development Corporation",
+	"Phu My Hung",
+	"Nam Long Investment Corporation",
+	"Sun Group",
+}
 
 func main() {
 	/*
@@ -15,9 +29,51 @@ func main() {
 	fmt.Println("[Headfirst Series][Game 11] : Map")
 	filePath := os.Args[1:][0]
 	fmt.Printf("%v\n", filePath)
-	status, err := generateData(filePath)
-	if err != nil { fmt.Println(err) }
-	if status { fmt.Println("Otoke") }
+	// status, err := generateData(filePath)
+	// if err != nil { fmt.Println(err) }
+	// if status { fmt.Println("Otoke") }
+	var results []int	
+	countVotes(filePath, &results)
+	printVotesResult(names, results)
+}
+
+func printArray(arr []int) {
+	for index := 0; index < len(arr); index++ {
+		fmt.Printf("%v ", arr[index])
+	}
+	fmt.Printf("\n")
+}
+
+func printVotesResult(names [10]string, results []int) {
+	for index := 0; index < len(names); index++ {
+		fmt.Printf("%v : %v votes \n", names[index], results[index])
+	}
+}
+
+func countVotes(filePath string, results *[]int) error{
+	// https://www.geeksforgeeks.org/golang-pointer-to-an-array-as-function-argument/
+	
+	*results = make([]int, 10)
+	// reset votes to 0 for all
+	for i := 0; i < len(*results); i++ {
+		(*results)[i] = 0
+	}
+	fh, err := os.OpenFile(filePath, os.O_RDONLY, 0700)
+	if err != nil {
+		fh.Close()
+		return err
+	}
+	scanner := bufio.NewScanner(fh)
+	for scanner.Scan() {
+		// count votes
+		for idx, name := range names {
+			if scanner.Text() == name {
+				(*results)[idx] ++
+				break
+			}
+		}
+	}
+	return nil
 }
 
 func generateData(filePath string) (status bool, err error) {
