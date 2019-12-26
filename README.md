@@ -72,3 +72,9 @@ sudo apt-get install golang-golang-x-tools
 
 godoc -http :6060
 ```
+
+> Struct type should be Capitalize if you wanna export them from their package
+
+> Struct fields should be Capitalize if you wanna export them from their package
+
+- https://godoc.org/sort#Slice
