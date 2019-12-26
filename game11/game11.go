@@ -16,6 +16,7 @@ func main() {
 	* - Read votes data from file, input by user
 	* - Count names and display the result
 	*/
+	// sort mapped with : https://github.com/indraniel/go-learn/blob/master/09-sort-map-keys-by-values.go
 	fmt.Println("[Headfirst Series][Game 11] : Map")
 	filePath := os.Args[1:][0]
 	fmt.Printf("%v\n", filePath)
