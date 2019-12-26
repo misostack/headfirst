@@ -51,11 +51,11 @@ func main() {
 	for idx, k := range plks {
 		dob := strconv.Itoa(1996 + idx) + "-01-01"
 		u := newUser(uint64(idx + 1), k, pLangs[k], "The Programming Language", dob )
-		users = append(users, u)
+		users = append(users, *u)
 	}
 	for _, u := range users {
 		randomVotes(&u)
-		displayUserInfo(u)
+		displayUserInfo(&u)
 	}
 }
 
@@ -67,8 +67,8 @@ func randomVotes( u *user) {
 	// (*u).votes = uint64(rand.Int63n(10000)) ==> no need
 	u.votes = uint64(rand.Int63n(10000))
 }
-
-func displayUserInfo(user user) {
+/* should pass as ref to reduce memory */
+func displayUserInfo(user *user) {
 	fmt.Printf("ID: %v\n", user.id)
 	fmt.Printf("Username : %v\n", strings.ToUpper(user.username))
 	fmt.Printf("Full Name : %v %v\n", user.firstName, user.lastName)
@@ -84,7 +84,7 @@ func displayUserInfo(user user) {
 	fmt.Printf("\n")
 }
 
-func newUser(id uint64, username string, firstName string, lastName string, dob string) user {
+func newUser(id uint64, username string, firstName string, lastName string, dob string) *user {
 	var user user
 	user.id = id
 	user.username = username
@@ -102,5 +102,5 @@ func newUser(id uint64, username string, firstName string, lastName string, dob 
 	} else {
 		user.active = true
 	}
-	return user
+	return &user
 }
