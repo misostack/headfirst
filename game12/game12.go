@@ -64,7 +64,8 @@ func randomVotes( u *user) {
 	if err != nil { log.Fatal(err) }
 	time.Sleep(duration)
 	rand.Seed(int64(time.Now().Nanosecond()))
-	(*u).votes = uint64(rand.Int63n(10000))
+	// (*u).votes = uint64(rand.Int63n(10000)) ==> no need
+	u.votes = uint64(rand.Int63n(10000))
 }
 
 func displayUserInfo(user user) {
