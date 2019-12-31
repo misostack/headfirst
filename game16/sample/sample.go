@@ -24,6 +24,52 @@ func (s Sample) MethodWithReturnValue() string{
 	return strconv.Itoa(int(s))
 }
 
+type NoiseMaker interface {
+	makeNoise()
+}
+
+type Appliance interface {
+	turnOn()
+}
+
+type Whistle string
+type Horn string
+type Robot string
+type Fan string
+type CoffeePot string
+
+func (w Whistle) makeNoise() {
+	fmt.Printf("%v : tutu\n", w)
+}
+
+func (h Horn) makeNoise() {
+	fmt.Printf("%v : toetoe\n", h)
+}
+
+func playMusicInstrument(n NoiseMaker) {
+	n.makeNoise()	
+}
+
+func (r Robot) makeNoise() {
+	fmt.Printf("%v : pi pi pi\n", r)
+}
+
+func (r Robot) walk() {
+	fmt.Println("%v : is walking slowly\n", r)
+}
+
+func (f Fan) turnOn() {
+	fmt.Printf("%v : Spinning\n", f)
+}
+
+func (c CoffeePot) turnOn() {
+	fmt.Printf("%v : Powering up\n", c)
+}
+
+func (c CoffeePot) brew() {
+	fmt.Printf("%v : Heating up\n", c)
+}
+
 func main() {
 	// declare an interface
 	fmt.Println("Sample interface")
@@ -31,5 +77,17 @@ func main() {
 	s = Sample(5)
 	s.MethodWithoutParams()
 	s.MethodWithParams(4)
-	fmt.Printf("s = %v\n", s.MethodWithReturnValue())	
+	fmt.Printf("s = %v\n", s.MethodWithReturnValue())
+	var toy NoiseMaker
+	toy = Whistle("whistle")
+	playMusicInstrument(toy)
+	toy = Horn("horn")
+	playMusicInstrument(toy)
+	toy = Robot("robot")
+	playMusicInstrument(toy)
+	var appliance Appliance
+	appliance = Fan("Fan")
+	appliance.turnOn()
+	appliance = CoffeePot("Coffee Pot")
+	appliance.turnOn()
 }
