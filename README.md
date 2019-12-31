@@ -78,3 +78,18 @@ godoc -http :6060
 > Struct fields should be Capitalize if you wanna export them from their package
 
 - https://godoc.org/sort#Slice
+
+## help
+
+```bash
+go doc {package} {func}
+eg:
+
+go doc fmt Println
+
+func Println(a ...interface{}) (n int, err error)
+    Println formats using the default formats for its operands and writes to
+    standard output. Spaces are always added between operands and a newline is
+    appended. It returns the number of bytes written and any write error
+    encountered.
+```

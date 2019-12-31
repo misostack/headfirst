@@ -70,6 +70,10 @@ func (c CoffeePot) brew() {
 	fmt.Printf("%v : Heating up\n", c)
 }
 
+func (c CoffeePot) String() string {
+	return "I'm a little coffee pot!"
+}
+
 func main() {
 	// declare an interface
 	fmt.Println("Sample interface")
@@ -90,4 +94,8 @@ func main() {
 	appliance.turnOn()
 	appliance = CoffeePot("Coffee Pot")
 	appliance.turnOn()
+	coffeebot, ok := appliance.(CoffeePot)
+	if ok {
+		fmt.Println(coffeebot.String())
+	}
 }
